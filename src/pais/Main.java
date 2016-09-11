@@ -19,7 +19,6 @@ public class Main {
         ResultSet rs = stmt.executeQuery("SELECT * FROM Plants");
         
         
-        /*ArrayList<String[]> plants = new ArrayList <String[]>();*/
         ArrayList<Plant> plants = new ArrayList <Plant>();
 
         while(rs.next())
