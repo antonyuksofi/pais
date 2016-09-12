@@ -24,6 +24,16 @@ public class Plant {
 	{
 		this.species = species;
 	}
+	
+	public void set_plant_class(String plant_class)
+	{
+		this.plant_class = plant_class;
+	}
+	
+	public void set_pot_size(String pot_size)
+	{
+		this.pot_size = pot_size;
+	}
 
 	public String get_genus()
 	{
@@ -33,6 +43,16 @@ public class Plant {
 	public String get_species()
 	{
 		return this.species;
+	}
+
+	public String get_plant_class()
+	{
+		return this.plant_class;
+	}
+
+	public String get_pot_size()
+	{
+		return this.pot_size;
 	}
 
 }
