@@ -29,12 +29,13 @@ public class Main {
         			rs.getString("class"),
         			rs.getString("pot_size")
         			);
+        	temp_plant.set_field_number( rs.getString("field_number") );
         	plants.add(temp_plant);
         }
         
         for (int i = 0; i < plants.size(); i++)
         {
-        	System.out.println(i+1 + ". " + plants.get(i).get_genus() + "\t" + plants.get(i).get_species());
+        	System.out.println(i+1 + ". " + plants.get(i).get_genus() + "\t" + plants.get(i).get_species() + "\t" + plants.get(i).get_field_number());
         }
         
         stmt.close();

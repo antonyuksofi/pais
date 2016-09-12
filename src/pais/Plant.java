@@ -6,6 +6,7 @@ public class Plant {
 	private String species;
 	private String plant_class;
 	private String pot_size;
+	private String field_number = "";
 	
 	public Plant(String genus, String species, String plant_class, String pot_size)
 	{
@@ -34,6 +35,11 @@ public class Plant {
 	{
 		this.pot_size = pot_size;
 	}
+	
+	public void set_field_number(String field_number)
+	{
+		this.field_number = field_number;
+	}
 
 	public String get_genus()
 	{
@@ -53,6 +59,11 @@ public class Plant {
 	public String get_pot_size()
 	{
 		return this.pot_size;
+	}
+	
+	public String get_field_number()
+	{
+		return this.field_number;
 	}
 
 }
