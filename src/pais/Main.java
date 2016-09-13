@@ -7,16 +7,18 @@ public class Main {
 	public static void main(String[] args) throws SQLException 
 	{
 		DatabaseWork.openConnection();
-        if (DatabaseWork.getConnection()==null) {
+        if (DatabaseWork.getConnection() == null) {
             System.out.println("Немає з'єднання з БД!");
             System.exit(0);
         }
         
-        Statement stmt = DatabaseWork.getConnection().createStatement();
+        /*Statement stmt = DatabaseWork.getConnection().createStatement();
         int id = 1;
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Plants where id = " + id);
+        ResultSet rs = stmt.executeQuery("select * from Plants where id = " + id);
+        if (rs.next())
+        	System.out.println(rs.getString("genus"));*/
         
-        System.out.println(Plant.getGenusById(id));
+        System.out.println(Plant.getGenusById(1));
         
         /*ArrayList<Plant> plants = new ArrayList <Plant>();
         while(rs.next()) {
@@ -35,7 +37,7 @@ public class Main {
         			"\t" + plants.get(i).get_field_number());
         }*/
         
-        stmt.close();
+        //stmt.close();
         DatabaseWork.closeConnection();
 	}
 

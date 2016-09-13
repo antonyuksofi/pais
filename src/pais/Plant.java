@@ -4,6 +4,7 @@ import java.sql.*;
 
 public class Plant {
 	
+	private int id = 0;
 	private String genus;
 	private String species;
 	private String field_number = "";
@@ -45,16 +46,19 @@ public class Plant {
 		Statement statement = DatabaseWork.getConnection().createStatement();
 		ResultSet result = statement.executeQuery("select * from Plants where id = " + id);
 		Plant plant = new Plant();
-		plant.set_genus(result.getString("genus"));
-		plant.set_species (result.getString("species"));
-		plant.set_field_number (result.getString("field_number"));
-		plant.set_plant_class (result.getString("plant_class"));
-		plant.set_pot_size (result.getString("pot_size"));
-		plant.set_seller (result.getString("seller"));
-		plant.set_sow_date (result.getString("sow_date"));
-		plant.set_mum_id (result.getInt("mum_id"));
-		plant.set_dad_id (result.getInt("dad_id"));
-		plant.set_core_head_id (result.getInt("core_head_id"));
+		if (result.next()) {
+			plant.set_id(result.getInt("id"));
+			plant.set_genus(result.getString("genus"));
+			plant.set_species (result.getString("species"));
+			plant.set_field_number (result.getString("field_number"));
+			plant.set_plant_class (result.getString("class"));
+			plant.set_pot_size (result.getString("pot_size"));
+			plant.set_seller (result.getString("seller"));
+			plant.set_sow_date (result.getString("sow_date"));
+			plant.set_mum_id (result.getInt("mum_id"));
+			plant.set_dad_id (result.getInt("dad_id"));
+			plant.set_core_head_id (result.getInt("core_head_id"));	
+		}
 		statement.close();
 		return plant;
 	}
@@ -62,9 +66,17 @@ public class Plant {
 	public static String getGenusById(int id) throws SQLException {
 		Statement statement = DatabaseWork.getConnection().createStatement();
 		ResultSet result = statement.executeQuery("select genus from Plants where id = " + id);
+		String res = "";
+		if (result.next())
+			res = result.getString("genus");
 		statement.close();
-		return result.getString("genus");
+		result.close(); 
+		return res;
 	}
+	
+	public void set_id(int id) { 
+		this.id = id; 
+		}
 	
 	public void set_genus(String genus) { 
 		this.genus = genus; 

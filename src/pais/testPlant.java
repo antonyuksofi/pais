@@ -20,14 +20,13 @@ public class testPlant {
 	}
 	
 	
-	/*@Test
+	@Test
 	public void getPlantById_test() throws SQLException {
-		//Connection connection = DatabaseWork.getConnection();
 		Plant actual_plant = Plant.getPlantById(1);
 		Plant expected_plant = new Plant ("Haworthia", "cv. Black Major", "", 
 				"succulents", "5", "ћух≥н √ригор≥й", "", 0,0,0);
 		assertEquals(actual_plant, expected_plant);
-	}*/
+	}
 	
 	@Test
 	public void getGenusById_test() throws SQLException {
