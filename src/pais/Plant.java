@@ -28,8 +28,9 @@ public class Plant {
 		this.pot_size = pot_size;
 	}
 	
-	public Plant(String genus, String species, String field_number, String plant_class, String pot_size,
-			String seller, String sow_date, int mum_id, int dad_id, int core_head_id) {
+	public Plant(String genus, String species, String field_number, String plant_class,
+			String pot_size, String seller, String sow_date, int mum_id, int dad_id,
+			int core_head_id) {
 		this.genus = genus;
 		this.species = species;
 		this.field_number = field_number;
@@ -41,38 +42,74 @@ public class Plant {
 		this.dad_id = dad_id;
 		this.core_head_id = core_head_id;
 	}
-	
-	public static Plant getPlantById(int id) throws SQLException {
+
+	public static String getById(int id, String field) throws SQLException {
 		Statement statement = DatabaseWork.getConnection().createStatement();
-		ResultSet result = statement.executeQuery("select * from Plants where id = " + id);
-		Plant plant = new Plant();
-		if (result.next()) {
-			plant.set_id(result.getInt("id"));
-			plant.set_genus(result.getString("genus"));
-			plant.set_species (result.getString("species"));
-			plant.set_field_number (result.getString("field_number"));
-			plant.set_plant_class (result.getString("class"));
-			plant.set_pot_size (result.getString("pot_size"));
-			plant.set_seller (result.getString("seller"));
-			plant.set_sow_date (result.getString("sow_date"));
-			plant.set_mum_id (result.getInt("mum_id"));
-			plant.set_dad_id (result.getInt("dad_id"));
-			plant.set_core_head_id (result.getInt("core_head_id"));	
-		}
+		ResultSet result_set = statement.executeQuery("select " + field +
+				" from Plants where id = " + id);
+		String res = "";
+		if (result_set.next())
+			res = result_set.getString(field);
 		statement.close();
-		return plant;
+		result_set.close(); 
+		return res;		
 	}
 	
 	public static String getGenusById(int id) throws SQLException {
 		Statement statement = DatabaseWork.getConnection().createStatement();
-		ResultSet result = statement.executeQuery("select genus from Plants where id = " + id);
+		ResultSet result_set = statement.executeQuery("select genus from Plants where id = " + id);
 		String res = "";
-		if (result.next())
-			res = result.getString("genus");
+		if (result_set.next())
+			res = result_set.getString("genus");
 		statement.close();
-		result.close(); 
+		result_set.close(); 
 		return res;
 	}
+	
+	public static int getPotSizeById(int id) throws SQLException {
+		Statement statement = DatabaseWork.getConnection().createStatement();
+		ResultSet result_set = statement.executeQuery("select pot_size from Plants where id = " + id);
+		int res = -1;
+		if (result_set.next())
+			res = result_set.getInt("pot_size");
+		statement.close();
+		result_set.close(); 
+		return res;
+	}
+	
+	public static int getTheBiggestPlantId() throws SQLException {
+		Statement statement = DatabaseWork.getConnection().createStatement();
+		ResultSet result_set = statement.executeQuery("select id from Plants order by id desc limit 1");
+		int res = -1;
+		if (result_set.next())
+			res = result_set.getInt("id");
+		statement.close();
+		result_set.close();
+		return res;
+	}
+	
+	public static int countPlants() throws SQLException {
+		Statement statement = DatabaseWork.getConnection().createStatement();
+		ResultSet result_set = statement.executeQuery("select count(*) from Plants");
+		int res = -1;
+		if (result_set.next())
+			res = result_set.getInt(1);
+		statement.close();
+		result_set.close(); 
+		return res;
+	}
+	
+	public static String throwingException() throws SQLException {
+		Statement statement = DatabaseWork.getConnection().createStatement();
+		ResultSet result_set = statement.executeQuery("select * from Plants where id = 1");
+		String res = "";
+		//if (result_set.next())
+			res = result_set.getString("genus") + " " + result_set.getString("species");
+		statement.close();
+		result_set.close(); 
+		return res;
+	}
+	
 	
 	public void set_id(int id) { 
 		this.id = id; 
@@ -117,29 +154,50 @@ public class Plant {
 	public void set_core_head_id(int core_head_id) {
 		this.core_head_id = core_head_id;
 	}
+
 	
+	public int get_id() {
+		return this.id;
+	}
 
 	public String get_genus() { 
 		return this.genus; 
-		}
+	}
 
 	public String get_species()	{
 		return this.species; 
-		}
-
-	public String get_plant_class()	{
-		return this.plant_class; 
-		}
-
-	public String get_pot_size() { 
-		return this.pot_size; 
-		}
+	}
 	
 	public String get_field_number() {
 		return this.field_number;
 	}
+
+	public String get_plant_class()	{
+		return this.plant_class; 
+	}
+
+	public String get_pot_size() { 
+		return this.pot_size; 
+	}
+
+	public String get_seller() {
+		return this.seller;
+	}
 	
-	/*public int sum(int a, int b){
-		return a+b;
-	}*/
+	public String get_sow_date() {
+		return this.sow_date;
+	}
+	
+	public int get_mum_id() {
+		return this.mum_id;
+	}
+	
+	public int get_dad_id() {
+		return this.dad_id;
+	}
+	
+	public int get_core_head_id() {
+		return this.core_head_id;
+	}
+	
 }

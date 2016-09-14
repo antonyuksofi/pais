@@ -6,9 +6,7 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-public class testPlant {
-	//static DatabaseWork db = new DatabaseWork();
-	
+public class testPlant {	
 	@BeforeClass
 	public static void openingConnectionToDatabase() {
 		DatabaseWork.openConnection();
@@ -19,13 +17,10 @@ public class testPlant {
 		DatabaseWork.closeConnection();
 	}
 	
-	
-	@Test
-	public void getPlantById_test() throws SQLException {
-		Plant actual_plant = Plant.getPlantById(1);
-		Plant expected_plant = new Plant ("Haworthia", "cv. Black Major", "", 
-				"succulents", "5", "ћух≥н √ригор≥й", "", 0,0,0);
-		assertEquals(actual_plant, expected_plant);
+	@Test()
+	public void getById_test() throws SQLException {
+		assertEquals("5", Plant.getById(1, "pot_size"));
+		assertEquals("Haworthia", Plant.getById(1, "genus"));
 	}
 	
 	@Test
@@ -33,20 +28,24 @@ public class testPlant {
 		assertEquals("Haworthia", Plant.getGenusById(1));
 	}
 	
-	
-	/*public int multiply (int a, int b){
-		return a*b;
+	@Test(timeout=10)
+	public void getPotSizeById_test() throws SQLException {
+		assertEquals(5, Plant.getPotSizeById(1));
 	}
 	
 	@Test
-	public void checkMultiply (){
-		assertEquals(6, multiply(2,3));
-	}*/
+	public void getTheBiggestPlantId_test() throws SQLException {
+		assertTrue(7 <= Plant.getTheBiggestPlantId());
+	}
 	
-	/*@Test
-	public void checkSum (){
-		Plant plant_for_test = new Plant();
-		assertEquals(6, plant_for_test.sum(2,3));
-	}*/
-
+	@Test
+	public void countPlants_test() throws SQLException {
+		assertFalse(0 == Plant.countPlants());
+	}
+	
+	//@Ignore("Isn't working correctly")
+	@Test (expected = SQLException.class)
+	public void throwingException_test() throws SQLException {
+		Plant.throwingException();
+	}
 }
