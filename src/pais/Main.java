@@ -12,10 +12,10 @@ public class Main {
             System.exit(0);
         }
         
-        System.out.println(Watering.getWaterededPlantsClassesById(2));
+        /*System.out.println(Watering.getWaterededPlantsClassesById(2));
         System.out.println(Watering.getWaterededPlantsClassesByDate("'2016-08-30'"));
         System.out.println(Watering.checkIfPlantClassWasWateredOnDate("'2016-09-13'", "cacti"));
-        System.out.println(Watering.checkIfPlantClassWasWateredOnDate("'2016-08-30'", "grassy"));
+        System.out.println(Watering.checkIfPlantClassWasWateredOnDate("'2016-08-30'", "grassy"));*/
         
         DatabaseWork.closeConnection();
 	}
