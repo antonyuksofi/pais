@@ -1,9 +1,8 @@
 package pais;
 
-import java.sql.*;
+import java.sql.SQLException;
 
 import static org.junit.Assert.*;
-
 import org.junit.*;
 
 
