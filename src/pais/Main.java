@@ -17,8 +17,6 @@ public class Main {
         System.out.println(Watering.checkIfPlantClassWasWateredOnDate("'2016-09-13'", "cacti"));
         System.out.println(Watering.checkIfPlantClassWasWateredOnDate("'2016-08-30'", "grassy"));
         
-        //System.out.println(Plant.getGenusById(1));
-        
         DatabaseWork.closeConnection();
 	}
 
