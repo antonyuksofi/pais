@@ -6,13 +6,13 @@ import org.junit.Test;
 
 public class TestDrivenDevelopment {
 	
-	public static double division() {
-		//returns the result of operation 35/7
-		return 35/7;
+	public static double division(double a, double b) {
+		//returns the result of operation a/b
+		return a/b;
 	}
 	
 	@Test
 	public void division_test() {
-		assertEquals(5, division(), 0.1);
+		assertEquals(5, division(35, 7), 0.1);
 	}
 }
